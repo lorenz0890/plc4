@@ -51,6 +51,13 @@ public interface AdvancedCalculatorVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitAddSub(AdvancedCalculatorParser.AddSubContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code eof}
+	 * labeled alternative in {@link AdvancedCalculatorParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitEof(AdvancedCalculatorParser.EofContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code mulDiv}
 	 * labeled alternative in {@link AdvancedCalculatorParser#expression}.
 	 * @param ctx the parse tree

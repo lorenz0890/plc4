@@ -77,6 +77,18 @@ public interface AdvancedCalculatorListener extends ParseTreeListener {
 	 */
 	void exitAddSub(AdvancedCalculatorParser.AddSubContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code eof}
+	 * labeled alternative in {@link AdvancedCalculatorParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterEof(AdvancedCalculatorParser.EofContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code eof}
+	 * labeled alternative in {@link AdvancedCalculatorParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitEof(AdvancedCalculatorParser.EofContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code mulDiv}
 	 * labeled alternative in {@link AdvancedCalculatorParser#expression}.
 	 * @param ctx the parse tree

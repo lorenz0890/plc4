@@ -257,6 +257,23 @@ public class AdvancedCalculatorParser extends Parser {
 			else return visitor.visitChildren(this);
 		}
 	}
+	public static class EofContext extends ExpressionContext {
+		public TerminalNode EOF() { return getToken(AdvancedCalculatorParser.EOF, 0); }
+		public EofContext(ExpressionContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof AdvancedCalculatorListener ) ((AdvancedCalculatorListener)listener).enterEof(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof AdvancedCalculatorListener ) ((AdvancedCalculatorListener)listener).exitEof(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof AdvancedCalculatorVisitor ) return ((AdvancedCalculatorVisitor<? extends T>)visitor).visitEof(this);
+			else return visitor.visitChildren(this);
+		}
+	}
 	public static class MulDivContext extends ExpressionContext {
 		public Token op;
 		public List<ExpressionContext> expression() {
@@ -297,7 +314,7 @@ public class AdvancedCalculatorParser extends Parser {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(24);
+			setState(25);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,1,_ctx) ) {
 			case 1:
@@ -342,12 +359,21 @@ public class AdvancedCalculatorParser extends Parser {
 				setState(22);
 				match(T__6);
 				setState(23);
-				expression(1);
+				expression(2);
+				}
+				break;
+			case 5:
+				{
+				_localctx = new EofContext(_localctx);
+				_ctx = _localctx;
+				_prevctx = _localctx;
+				setState(24);
+				match(EOF);
 				}
 				break;
 			}
 			_ctx.stop = _input.LT(-1);
-			setState(34);
+			setState(35);
 			_errHandler.sync(this);
 			_alt = getInterpreter().adaptivePredict(_input,3,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
@@ -355,16 +381,16 @@ public class AdvancedCalculatorParser extends Parser {
 					if ( _parseListeners!=null ) triggerExitRuleEvent();
 					_prevctx = _localctx;
 					{
-					setState(32);
+					setState(33);
 					_errHandler.sync(this);
 					switch ( getInterpreter().adaptivePredict(_input,2,_ctx) ) {
 					case 1:
 						{
 						_localctx = new MulDivContext(new ExpressionContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
-						setState(26);
-						if (!(precpred(_ctx, 5))) throw new FailedPredicateException(this, "precpred(_ctx, 5)");
 						setState(27);
+						if (!(precpred(_ctx, 6))) throw new FailedPredicateException(this, "precpred(_ctx, 6)");
+						setState(28);
 						((MulDivContext)_localctx).op = _input.LT(1);
 						_la = _input.LA(1);
 						if ( !(_la==T__2 || _la==T__3) ) {
@@ -375,17 +401,17 @@ public class AdvancedCalculatorParser extends Parser {
 							_errHandler.reportMatch(this);
 							consume();
 						}
-						setState(28);
-						expression(6);
+						setState(29);
+						expression(7);
 						}
 						break;
 					case 2:
 						{
 						_localctx = new AddSubContext(new ExpressionContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
-						setState(29);
-						if (!(precpred(_ctx, 4))) throw new FailedPredicateException(this, "precpred(_ctx, 4)");
 						setState(30);
+						if (!(precpred(_ctx, 5))) throw new FailedPredicateException(this, "precpred(_ctx, 5)");
+						setState(31);
 						((AddSubContext)_localctx).op = _input.LT(1);
 						_la = _input.LA(1);
 						if ( !(_la==T__4 || _la==T__5) ) {
@@ -396,14 +422,14 @@ public class AdvancedCalculatorParser extends Parser {
 							_errHandler.reportMatch(this);
 							consume();
 						}
-						setState(31);
-						expression(5);
+						setState(32);
+						expression(6);
 						}
 						break;
 					}
 					} 
 				}
-				setState(36);
+				setState(37);
 				_errHandler.sync(this);
 				_alt = getInterpreter().adaptivePredict(_input,3,_ctx);
 			}
@@ -430,26 +456,26 @@ public class AdvancedCalculatorParser extends Parser {
 	private boolean expression_sempred(ExpressionContext _localctx, int predIndex) {
 		switch (predIndex) {
 		case 0:
-			return precpred(_ctx, 5);
+			return precpred(_ctx, 6);
 		case 1:
-			return precpred(_ctx, 4);
+			return precpred(_ctx, 5);
 		}
 		return true;
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\16(\4\2\t\2\4\3\t"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\16)\4\2\t\2\4\3\t"+
 		"\3\3\2\3\2\3\2\7\2\n\n\2\f\2\16\2\r\13\2\3\2\3\2\3\3\3\3\3\3\3\3\3\3\3"+
-		"\3\3\3\3\3\3\3\3\3\5\3\33\n\3\3\3\3\3\3\3\3\3\3\3\3\3\7\3#\n\3\f\3\16"+
-		"\3&\13\3\3\3\2\3\4\4\2\4\2\4\3\2\5\6\3\2\7\b\2+\2\13\3\2\2\2\4\32\3\2"+
-		"\2\2\6\7\5\4\3\2\7\b\7\f\2\2\b\n\3\2\2\2\t\6\3\2\2\2\n\r\3\2\2\2\13\t"+
-		"\3\2\2\2\13\f\3\2\2\2\f\16\3\2\2\2\r\13\3\2\2\2\16\17\5\4\3\2\17\3\3\2"+
-		"\2\2\20\21\b\3\1\2\21\22\7\3\2\2\22\23\5\4\3\2\23\24\7\4\2\2\24\33\3\2"+
-		"\2\2\25\33\7\n\2\2\26\33\7\16\2\2\27\30\7\16\2\2\30\31\7\t\2\2\31\33\5"+
-		"\4\3\3\32\20\3\2\2\2\32\25\3\2\2\2\32\26\3\2\2\2\32\27\3\2\2\2\33$\3\2"+
-		"\2\2\34\35\f\7\2\2\35\36\t\2\2\2\36#\5\4\3\b\37 \f\6\2\2 !\t\3\2\2!#\5"+
-		"\4\3\7\"\34\3\2\2\2\"\37\3\2\2\2#&\3\2\2\2$\"\3\2\2\2$%\3\2\2\2%\5\3\2"+
-		"\2\2&$\3\2\2\2\6\13\32\"$";
+		"\3\3\3\3\3\3\3\3\3\3\3\5\3\34\n\3\3\3\3\3\3\3\3\3\3\3\3\3\7\3$\n\3\f\3"+
+		"\16\3\'\13\3\3\3\2\3\4\4\2\4\2\4\3\2\5\6\3\2\7\b\2-\2\13\3\2\2\2\4\33"+
+		"\3\2\2\2\6\7\5\4\3\2\7\b\7\f\2\2\b\n\3\2\2\2\t\6\3\2\2\2\n\r\3\2\2\2\13"+
+		"\t\3\2\2\2\13\f\3\2\2\2\f\16\3\2\2\2\r\13\3\2\2\2\16\17\5\4\3\2\17\3\3"+
+		"\2\2\2\20\21\b\3\1\2\21\22\7\3\2\2\22\23\5\4\3\2\23\24\7\4\2\2\24\34\3"+
+		"\2\2\2\25\34\7\n\2\2\26\34\7\16\2\2\27\30\7\16\2\2\30\31\7\t\2\2\31\34"+
+		"\5\4\3\4\32\34\7\2\2\3\33\20\3\2\2\2\33\25\3\2\2\2\33\26\3\2\2\2\33\27"+
+		"\3\2\2\2\33\32\3\2\2\2\34%\3\2\2\2\35\36\f\b\2\2\36\37\t\2\2\2\37$\5\4"+
+		"\3\t !\f\7\2\2!\"\t\3\2\2\"$\5\4\3\b#\35\3\2\2\2# \3\2\2\2$\'\3\2\2\2"+
+		"%#\3\2\2\2%&\3\2\2\2&\5\3\2\2\2\'%\3\2\2\2\6\13\33#%";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

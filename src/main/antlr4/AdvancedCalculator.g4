@@ -18,6 +18,7 @@ expression  : '(' expression ')'                    # parens
             | NUMBER                                # num
             | VAR                                   # variable
             | VAR '=' expression                    # allocation
+            | EOF                                   # eof
             ;
 
 NUMBER  :   DIGIT* '.' DIGIT+
